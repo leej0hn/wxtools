@@ -1,0 +1,10 @@
+logging:
+  file: ${user.home}/logs/wxtools-mongo-persistence.log
+
+#MongoProperties
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: wxtools
+  username:
+  password:

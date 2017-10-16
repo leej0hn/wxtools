@@ -1,0 +1,5 @@
+applicationName: wxtools-websocket
+
+logging:
+  file: ${user.home}/logs/wxtools-websocket.log
+server.port: 9000
