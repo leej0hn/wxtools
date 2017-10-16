@@ -18,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
 @Slf4j
 public class WebSocketApplication implements CommandLineRunner {
 
-    @Value("${applicationName}")
+    @Value("${application.name}")
     private String applicationName;
 
     public static void main(String[] args) {

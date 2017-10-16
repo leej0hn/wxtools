@@ -1,4 +1,7 @@
-applicationName: wxtools-websocket
+application:
+  name: wxtools-websocket
+  websocket.path: /wxtools
+  websocket.token: 2f23682d85791f6aaf47415dd738de6a
 
 logging:
   file: ${user.home}/logs/wxtools-websocket.log

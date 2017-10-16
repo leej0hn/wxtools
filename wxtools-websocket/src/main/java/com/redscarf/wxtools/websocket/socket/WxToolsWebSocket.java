@@ -21,10 +21,12 @@ import java.util.Map;
 public class WxToolsWebSocket extends Endpoint{
 
     private final WxToolsMessageHandler testMessageHandler;
+    private final String token;
 
-    public WxToolsWebSocket(WxToolsMessageHandler testMessageHandler){
+    public WxToolsWebSocket(WxToolsMessageHandler testMessageHandler,String token){
         this.testMessageHandler = testMessageHandler;
-        log.info("TestWebSocket hashcode : " + this.hashCode());
+        this.token = token;
+        log.info("WxToolsWebSocket constructor hashcode : " + this.hashCode());
     }
 
     @Override
@@ -36,14 +38,14 @@ public class WxToolsWebSocket extends Endpoint{
             String clientWxId = null ;
             if( tokenList != null  ){
                 String token = tokenList.get(0);
-                if( token != null && token.equals("b53a132adb7294e7c71771e60b4eaabe") ){
+                if( token != null && token.equals(this.token) ){
                     if( clientWxIdList != null ){
                         clientWxId = clientWxIdList.get(0);
                     }
                     if( clientWxId != null && !clientWxId.equals("")){
                         WebsocketUtil.put(clientWxId,session);
                         session.addMessageHandler(testMessageHandler);
-                        log.info("TestWebSocket onOpen hashcode : " + this.hashCode() + "  sessionId : " + session.getId() +  " clientWxId : " + clientWxId + "   有新链接加入 !  ; 当前在线人数为" + WebsocketUtil.size());
+                        log.info("WxToolsWebSocket onOpen hashcode : " + this.hashCode() + "  sessionId : " + session.getId() +  " clientWxId : " + clientWxId + "   有新链接加入 !  ; 当前在线人数为" + WebsocketUtil.size());
                         return;
                     }
                 }
@@ -57,7 +59,7 @@ public class WxToolsWebSocket extends Endpoint{
     @Override
     public void onClose (Session session,CloseReason closeReason){
         String clientWxId = WebsocketUtil.remove(session);
-        log.info("sessionId : " + session.getId() + "  clientWxId : " + clientWxId + "  有一链接关闭!当前在线人数为" + WebsocketUtil.size());
+        log.info("有一链接关闭!当前在线人数为" + WebsocketUtil.size() + "  clientWxId : " + clientWxId );
     }
 
 
